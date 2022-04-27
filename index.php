@@ -1,43 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="Public/images/favicon.png" type="image/x-icon">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-    <?php require_once "dependencies.php"; ?>
-</head>
-<body>
-   <div class="container">
-   <?php require_once "Vistas/Layouts/menu.php"; ?>
+<?php
+include_once "Clases/Login.php";
+include_once "Controlador/Admin/login.php";
 
-    <div class="jumbotron">
-        <h1 class="display-4 text-center">Bienvenido</h1>
-        <h3 class="display-5 text-center"><b><span>Alan</span></b></h3>
-        <p class="lead text-center">Alancarabali@gmail.com</p>
-        <hr class="my-4">
-       <div class="row">
-           <div class="col-sm-6">
-               <img  src="Public/images/pp.jpg" height="300" style="border-radius: 50%;  display: block;
-                margin: 0px auto;" alt="profile">
-           </div>
 
-           <!-- <div class="col-sm-6">
-               <div class="card">
-                   <div class="card-body">
-                       <h5 class="card-title"></h5>
-                       <p class="card-text"></p>
-                   </div>
-               </div>
-           </div> -->
-       </div>
+$userSession = new UserSession();
+$user = new Login();
 
-        
-    </div>
+if(isset($_SESSION['user'])){
+    //echo "hay sesion";
+    $user->setUser($userSession->getCurrentUser());
+   
+    include_once 'home.php';
 
-    <?php require_once "Vistas/Layouts/Footer.php"; ?>
-    </div>
+}else if(isset($_POST['txtuser']) && isset($_POST['txtpassword'])){
     
-</body>
-</html>
+    $userForm = $_POST['txtuser'];
+    $passForm = $_POST['txtpassword'];
+
+    $user = new Login();
+    if($user->userExists($userForm, $passForm)){
+        //echo "Existe el usuario";
+        $userSession->setCurrentUser($userForm);
+        $user->setUser($userForm);
+
+        include_once 'home.php';
+    }else{
+       // echo "No existe el usuario";
+        $errorLogin = "Nombre de usuario y/o contraseña incorrecto";
+        
+        include_once 'form.php';
+      
+    }
+}else{
+    //echo "no hay sesionm";
+   
+    include_once 'form.php';
+}

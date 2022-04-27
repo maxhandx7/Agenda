@@ -13,6 +13,13 @@
           <i class="fa fa-home menu-icon"></i>    
           Home</a>
         </li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link" href="config.php">
+        <i class="far fa-user-circle" aria-hidden="true"></i>     
+          Perfil</a>
+      </li>
+
         <li class="nav-item">
           <a class="nav-link" href="contacts.php">
           <i class="fa fa-id-card menu-icon"></i>    
@@ -23,19 +30,17 @@
           <i class="fa fa-layer-group menu-icon"></i>      
           Categorias</a>
         </li>
+
+       
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="Controlador/Admin/logout.php">
+          <i class="fa-solid fa-power-off"></i>     
+          Salir</a>
+        </li>
         
-       <!--   <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-user menu-icon"></i> 
-        Perfil
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">
-            
-          Ajustes</a>
-          <a class="dropdown-item" href="#">Salir</a>
-        </div>
-      </li> -->
+      
 
       
      

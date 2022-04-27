@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="modal" style="display: none;" id="modal">
+  <form id="frmadduser" method="post">
+    <section class="Form-register">
+      <h3>Nuevo usuario</h3>
+      <input class="controls" name="txtNombre" autocomplete="off" id="txtNombre" type="text" placeholder="Usuario" require>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../Public/Style.css">
-  <link rel="shortcut icon" href="../../Public/images/favicon.png" type="image/x-icon">
-  <title>Registro | Login</title>
-</head>
 
-<body>
 
-  <form class="box" action="../../Controlador/Admin/signup.php" method="POST">
-    
-    <input type="text" name="txtuser" autocomplete="off" id="txtuser" placeholder="Nombre">
+      <input class="controls" name="txtPass" autocomplete="off" id="txtPass" type="password" placeholder="Contraseña" require>
 
-    <input type="password" name="txtpassword" autocomplete="off" id="txtpassword" placeholder="ContraseÃ±a">
 
-    <input type="email" name="txtemail" autocomplete="off" id="txtemail" placeholder="ContraseÃ±a">
 
-    <input type="image" name="img" id="img">
+      <input class="controls" name="txtEmail" id="txtEmail" type="email" placeholder="Email" require>
 
-    <input type="submit" value="Registrar">
-    <a href="#"><p  style="text-decoration: none; color:white">Atras</p></a>
+
+
+
+      <button type="button" class="boton" id="btnuser">Registrar
+      </button>
+    </section>
+
   </form>
-</body>
 
-</html>
+
+</div>

@@ -1,9 +1,9 @@
 <?php require_once "Clases/Config.php" ;
     
     $ObjectC = new Conexion();
-    
+    $lol = $user->getID();
     $conexion = $ObjectC->Connect();
-    $sql = "SELECT id_categoria, nombre  FROM t_categorias ORDER BY nombre"; 
+    $sql = "SELECT users_id, id_categoria, nombre  FROM t_categorias WHERE users_id = $lol "; 
     $result = mysqli_query($conexion, $sql);
 ?>
 <!-- Modal -->
@@ -22,6 +22,8 @@
             <input type="txt" id="nombreContact" class="form-control" name="nombreContact" require>
         </div>
 
+        <input type="number" id="id_user" name="id_user" value="<?php echo $user->getID() ?>" style="display: none;">
+        
         <div class="form-group">
             <label for="apellidoContact">Apellido</label>
             <input type="txt" id="apellidoContact" class="form-control" name="apellidoContact" require>

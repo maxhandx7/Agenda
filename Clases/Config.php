@@ -12,31 +12,35 @@ class Conexion{
     }
 }
 
-/*Class Connection{
-	//datos de acceso
-	private $server = "mysql:host=localhost;dbname=agenda";
-	private $username = "root";
-	private $password = "";
-	private $options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,);
-	protected $conn;
- 	
-	public function open(){
- 		try{
- 			$this->conn = new PDO($this->server, $this->username, $this->password, $this->options);
- 			return $this->conn;
- 		}
- 		catch (PDOException $e){
- 			echo "Hubo un problema con la conexiÃ³n: " . $e->getMessage();
- 		}
- 
+class DB{
+    private $host;
+    private $db;
+    private $user;
+    private $password;
+    private $charset;
+
+    public function __construct(){
+        $this->host     = 'localhost';
+        $this->db       = 'agenda';
+        $this->user     = 'root';
+        $this->password = "";
+        $this->charset  = 'utf8mb4';
     }
- 
-	public function close(){
-   		$this->conn = null;
- 	}
- */
+	function connect(){
+    
+        try{
+            
+            $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ];
+            $pdo = new PDO($connection, $this->user, $this->password, $options);
+    
+            return $pdo;
 
-
-
-
-?> 
+        }catch(PDOException $e){
+            print_r('Error connection: ' . $e->getMessage());
+        }   
+    }
+}

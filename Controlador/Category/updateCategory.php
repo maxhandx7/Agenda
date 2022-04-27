@@ -9,5 +9,3 @@ require_once "../../Clases/Categories.php";
                 
 $Categories = new Categories();
 echo $Categories->updateCategory($dates);
-
-?>

@@ -1,10 +1,5 @@
-<?php require_once "../../Clases/Config.php" ;
-    
-    $ObjectC = new Conexion();
-    
-    $conexion = $ObjectC->Connect();
-    $sql = "SELECT * FROM t_categorias"; 
-    $result = mysqli_query($conexion, $sql);
+<?php 
+require_once "config.php";
 ?>
 <div class="card">
     <div class="card-body">
@@ -12,10 +7,11 @@
            <table class="table table-hover table-condensed" id="CategoryTableDT">
                <thead>
                    <tr>
-                       <th>Nombre</th>
+                       <th>Nombre </th>
                        <th>Descripcion</th>
                        <th>Editar</th>
                        <th>Eliminar</th>
+                       
                    </tr>
                </thead>
                <tbody>

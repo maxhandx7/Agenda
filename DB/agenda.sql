@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2022 a las 05:32:12
+-- Tiempo de generación: 27-04-2022 a las 04:57:48
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -25,11 +25,57 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `esatdo`
+--
+
+CREATE TABLE `esatdo` (
+  `id` int(10) NOT NULL,
+  `users_id` int(24) NOT NULL,
+  `estado` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `esatdo`
+--
+
+INSERT INTO `esatdo` (`id`, `users_id`, `estado`) VALUES
+(1, 76, 'Soy muy linda y me amo'),
+(2, 77, 'El estado de esta  cosa '),
+(3, 77, 'Sin Estado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id` int(24) NOT NULL,
+  `users_id` int(24) DEFAULT NULL,
+  `image` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id`, `users_id`, `image`) VALUES
+(1, 76, 'imagen_27033811.jpg'),
+(2, 76, 'imagen_27033811.jpg'),
+(3, 76, 'imagen_27033811.jpg'),
+(4, 77, 'imagen_27035336.jpg'),
+(5, 77, 'imagen_27035438.webp'),
+(6, 77, 'imagen_27044521.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `t_categorias`
 --
 
 CREATE TABLE `t_categorias` (
   `id_categoria` int(11) NOT NULL,
+  `users_id` int(8) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `fechaInsert` datetime NOT NULL DEFAULT current_timestamp()
@@ -39,9 +85,9 @@ CREATE TABLE `t_categorias` (
 -- Volcado de datos para la tabla `t_categorias`
 --
 
-INSERT INTO `t_categorias` (`id_categoria`, `nombre`, `descripcion`, `fechaInsert`) VALUES
-(3, 'Amiguis', 'Mis mejores Amigos ', '2022-03-21 22:53:04'),
-(18, 'No contestar', 'Molestos', '2022-03-22 15:05:01');
+INSERT INTO `t_categorias` (`id_categoria`, `users_id`, `nombre`, `descripcion`, `fechaInsert`) VALUES
+(32, 76, 'Love', '', '2022-04-26 20:39:19'),
+(33, 77, 'Lol', '', '2022-04-26 20:55:15');
 
 -- --------------------------------------------------------
 
@@ -52,6 +98,7 @@ INSERT INTO `t_categorias` (`id_categoria`, `nombre`, `descripcion`, `fechaInser
 CREATE TABLE `t_contactos` (
   `id_contactos` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
+  `users_id` int(8) NOT NULL,
   `nombre` varchar(245) DEFAULT NULL,
   `paterno` varchar(245) DEFAULT NULL,
   `telefono` varchar(145) DEFAULT NULL,
@@ -63,10 +110,9 @@ CREATE TABLE `t_contactos` (
 -- Volcado de datos para la tabla `t_contactos`
 --
 
-INSERT INTO `t_contactos` (`id_contactos`, `id_categoria`, `nombre`, `paterno`, `telefono`, `email`, `fechaInsert`) VALUES
-(1, 3, 'Alan', 'Paz', '3145561727', 'AlanCarabali@gmail.com', '2022-03-25 22:13:37'),
-(2, 3, 'Max', 'hand', '3165206818', 'maxhand171996@gmail.com', '2022-03-25 22:14:03'),
-(9, 18, 'Jorge', 'Lopez', '3124555448', 'gorge@gsmil.com', '2022-03-26 19:48:17');
+INSERT INTO `t_contactos` (`id_contactos`, `id_categoria`, `users_id`, `nombre`, `paterno`, `telefono`, `email`, `fechaInsert`) VALUES
+(53, 32, 76, 'Amor', '', '3145561727', '', '2022-04-26 20:39:38'),
+(54, 33, 77, 'Primer contactos ', '', '3155661242', '', '2022-04-26 20:55:38');
 
 -- --------------------------------------------------------
 
@@ -77,26 +123,50 @@ INSERT INTO `t_contactos` (`id_contactos`, `id_categoria`, `nombre`, `paterno`, 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nombre` varchar(56) NOT NULL,
-  `email` varchar(56) NOT NULL,
-  `image` varchar(256) NOT NULL DEFAULT '0'
+  `pass` varchar(25) NOT NULL,
+  `email` varchar(56) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id_user`, `nombre`, `pass`, `email`) VALUES
+(76, 'Diana', 'salma12.', 'Dianaamaamiranda@gmail.com'),
+(77, 'Alan', '1796', 'Alancarabali@gmail.com');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `esatdo`
+--
+ALTER TABLE `esatdo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
+
+--
 -- Indices de la tabla `t_categorias`
 --
 ALTER TABLE `t_categorias`
-  ADD PRIMARY KEY (`id_categoria`);
+  ADD PRIMARY KEY (`id_categoria`),
+  ADD KEY `user_id` (`users_id`);
 
 --
 -- Indices de la tabla `t_contactos`
 --
 ALTER TABLE `t_contactos`
   ADD PRIMARY KEY (`id_contactos`),
-  ADD KEY `fkContactoCategoria_idx` (`id_categoria`);
+  ADD KEY `fkContactoCategoria_idx` (`id_categoria`),
+  ADD KEY `user_id` (`users_id`);
 
 --
 -- Indices de la tabla `user`
@@ -109,32 +179,57 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `esatdo`
+--
+ALTER TABLE `esatdo`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `t_categorias`
 --
 ALTER TABLE `t_categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `t_contactos`
 --
 ALTER TABLE `t_contactos`
-  MODIFY `id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `esatdo`
+--
+ALTER TABLE `esatdo`
+  ADD CONSTRAINT `esatdo_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `t_categorias`
+--
+ALTER TABLE `t_categorias`
+  ADD CONSTRAINT `t_categorias_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `t_contactos`
 --
 ALTER TABLE `t_contactos`
-  ADD CONSTRAINT `fkContactoCategoria` FOREIGN KEY (`id_categoria`) REFERENCES `t_categorias` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fkContactoCategoria` FOREIGN KEY (`id_categoria`) REFERENCES `t_categorias` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_contactos_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

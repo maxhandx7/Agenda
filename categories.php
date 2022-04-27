@@ -1,3 +1,16 @@
+<?php
+include_once "Clases/Login.php";
+include_once "Controlador/Admin/login.php";
+
+
+$userSession = new UserSession();
+$user = new Login();
+
+if(isset($_SESSION['user'])){
+    $user->setUser($userSession->getCurrentUser());
+
+   ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,3 +44,10 @@
 <script src="Public/js/categories.js"></script>
 </body>
 </html>
+
+<?php
+
+}
+
+
+?>
