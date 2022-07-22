@@ -9,7 +9,7 @@
     <title>Agenda</title>
     <?php require_once "dependencies.php"; ?>
 </head>
-
+Hola
 <body>
     <div class="container">
         <?php require_once "Vistas/Layouts/menu.php"; ?>
