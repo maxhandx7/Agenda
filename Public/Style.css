@@ -1,0 +1,186 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: rgb(53, 54, 58);
+    box-sizing: border-box;
+    color: white;
+}
+
+
+.box{
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    border-radius: 2.5%;
+    border: 2px solid #3498db;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(123, 126, 134, 0.1);
+    text-align: center;
+
+}
+.box h1{
+    font-size: 18px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+.box img{
+    width: 250px;
+    border-radius: 50%;
+}
+
+.box input[type= "text" ], .box input[type= "password" ]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+
+}
+
+.box input[type= "text" ]:focus, .box input[type= "password" ]:focus{
+    width: 280px;
+    border-color: white;
+
+}
+
+.box input[type="submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 40px;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    font-size: 16px;
+}
+
+.box input[type="submit"]:hover{
+    background: #3498db
+    ;
+
+}
+
+
+.Form-register{
+    width: 400px;
+    background: rgb(53, 54, 58);
+    padding: 10px;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 4px;   
+    font-family: "calibri";
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.Form-register h4 {
+font-size: 22px;
+}
+
+.controls{
+width: 100%;
+background: rgb(53, 54, 58);
+padding: 0px;
+border-radius: 4px;
+margin-bottom: 16px;
+border: 1px solid #3498db;
+font-family: "calibri";
+color: white;
+font-size: 18px;
+transition: 0.25s;
+}
+
+.label{
+    border: none;
+    height: 40px;
+    text-align: center;
+}
+
+.Form-register .boton {
+    border: 0;
+    width: 100%;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 40px;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    font-size: 16px;
+}
+
+.boton:hover {
+    background: #3498db;
+}
+
+.btn_reg{
+    text-decoration: none;
+    color:white; 
+}
+
+.btn_reg:hover{
+    text-decoration: underline; 
+}
+
+#modal{
+    background-color: rgba(53, 54, 58, 0.1);
+}
+
+
+
+
+.inputfile {
+    text-align: center;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    margin: 0 auto;
+}
+
+
+
+
+
+/* style 3 */
+
+.inputfile-3 + label {
+    color: #fff;
+}
+
+.inputfile-3:focus + label,
+.inputfile-3.has-focus + label,
+.inputfile-3 + label:hover {
+    color: #c39f77;
+}
+
+
+
+
+
+
+
