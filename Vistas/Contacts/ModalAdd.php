@@ -44,8 +44,8 @@
                    
         <div class="form-group">
             <label for="categoryContact">Categorias</label>
-            <select name="categoryContact" id="categoryContact" class="form-control" require>
-                <option value="0" selected >seleccione una categoria</option>
+            <select name="categoryContact" id="categoryContact" class="form-control">
+                <option value="" selected disabled>seleccione una categoria</option>
                 <?php  foreach($result as $r){									
                                             echo '<option value="'.$r['id_categoria'].'">'.$r['nombre']. '</option>';   }                     
                                         ?>          

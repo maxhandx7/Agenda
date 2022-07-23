@@ -1,3 +1,16 @@
+<?php
+include_once "Clases/Login.php";
+include_once "Controlador/Admin/login.php";
+
+
+$userSession = new UserSession();
+$user = new Login();
+
+if (isset($_SESSION['user'])) {
+    $user->setUser($userSession->getCurrentUser());
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,20 +22,20 @@
     <title>Agenda</title>
     <?php require_once "dependencies.php"; ?>
 </head>
-Hola
+
 <body>
     <div class="container">
         <?php require_once "Vistas/Layouts/menu.php"; ?>
-        <?php //require_once "Vistas/Admin/config2.php" 
-        ?>
         <?php
-
         include_once "Clases/Config.php";
+        
         $ObjectC = new Conexion();
         $conexion = $ObjectC->Connect();
+     
+        $lol = $user->getID();
         $bsq = $_GET["srch"];
         $sql = "SELECT id_user, nombre, email, num FROM user WHERE nombre = '$bsq' ";
-
+        
         $result = mysqli_query($conexion, $sql);
         if (mysqli_num_rows($result) == 0) {
             echo "<div class='jumbotron'>
@@ -48,11 +61,18 @@ Hola
         ?>
                 <div class="jumbotron">
                     <h4 class="text-success textdisplay-8 text-left">Resultado de la Busqueda:</h4>
+                    <form id="frmaddContactFast"  method="post">
+                    <input type="text" id="id_user" name="id_user" value="<?php echo $lol; ?>" hidden>
+                    <input type="text" id="nombreContact" name="nombreContact" value="<?php echo $bsqda['nombre']; ?>" hidden>
+                    <input type="text" id="telContact" name="telContact" value="<?php echo $bsqda['num']; ?>" hidden>
+                    <input type="text" id="emailContact" name="emailContact" value="<?php echo $bsqda['email']; } ?>" hidden>
+                    </form>
+                   
                     <h3 class="display-5 text-center"><b><span><?php echo $bsqda['nombre']; ?></span></b></h3>
                     <p class="lead text-center"><?php echo $bsqda['email'];
-                                            } ?></p>
+                                             ?></p>
                     <p class="lead text-center"><?php echo $bsqda['num']; ?></p>
-                    <p class="lead text-center"><a href="" class="text-decoration-none"><i>Agregar</i></a></p>
+                    <p class="lead text-center"><a href="#" onclick="recogerdatos()" class="text-decoration-none"><i>Agregar</i></a></p>
                     <hr class="my-4">
                 </div>
                 <div class="row">
@@ -96,7 +116,7 @@ Hola
                             } else {
                                 echo "<p class='card-text'>" . $r2['estado'] . "</p>";
                             }
-                        }
+                        
                             ?>
 
                             </div>
@@ -105,12 +125,16 @@ Hola
 
                 </div>
 
-
+                
 
 
                 <?php require_once "Vistas/Layouts/Footer.php"; ?>
     </div>
-
+    <script src="Public/js/admin.js"></script>
 </body>
 
 </html>
+<?php
+        }
+}
+?>

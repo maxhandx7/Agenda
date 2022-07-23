@@ -37,10 +37,10 @@ class User extends Conexion
     public function updateUser($dates)
     {
         $conexion = Conexion::Connect();
-        $sql = "UPDATE user SET  nombre= ?,  pass= ?, email= ? WHERE id_user = ?";
+        $sql = "UPDATE user SET  nombre= ?,  pass= ?, email= ?, num=? WHERE id_user = ?";
 
         $query = $conexion->prepare($sql);
-        $query->bind_param('sssi',  $dates['nombre'], $dates['pass'], $dates['email'], $dates['idUser']);
+        $query->bind_param('sssii',  $dates['nombre'], $dates['pass'], $dates['email'], $dates['num'], $dates['idUser']);
         $answer = $query->execute();
 
         return $answer;

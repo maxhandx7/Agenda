@@ -54,12 +54,12 @@
                         foreach ($result2 as $r2) {
                             $r2['estado'];
                         }
-                        if ($r2['estado'] ==NULL  ) {
-                            echo "<p class='card-text'>Hola, Actualiza tu <a href='http://localhost/Agenda/config.php'>estado.</a></p>";
+                        if (isset($r2['estado']) == NULL  ) {
+                            echo "<p class='card-text'>Hola, Actualiza tu <a href='config.php'>estado.</a></p>";
                         } else {
                             echo "<p class='card-text'>" . $r2['estado'] . "</p>";
                         }
-
+                    
                         ?>
 
                     </div>
