@@ -49,7 +49,7 @@ function editUser(idUser) {
       $("#nombreUserU").val(answer["nombre"]);
       $("#passUserU").val(answer["pass"]);
       $("#emailUserU").val(answer["email"]);
-      $("#numUserU").val(answer["email"]);
+      $("#numUserU").val(answer["num"]);
     },
   });
 }
@@ -146,5 +146,38 @@ function addUser() {
       }
     },
   });
+}
+
+function recogerdatos() {
+ /*  let nombre = document.getElementById("cnombre").value;
+  let email = document.getElementById("cemail").value;
+  let tel = document.getElementById("cnum").value; */
+
+
+
+
+
+  $.ajax({
+    type: "POST",
+    data: $("#frmaddContactFast").serialize(),
+    url: "Controlador/Contact/addContact.php",
+    success: function (answer) {
+      answer = answer.trim();
+      if (answer == 1) {
+        swal({
+          title: "( ͡ᵔ ͜ʖ ͡ᵔ)",
+          text: "Agregado",
+          icon: "success",
+          
+        });
+        
+      } else {
+        swal(":(", "Hubo un problema al agregar contacto" + answer, "error");
+        
+      }
+    },
+  });
+
+
 }
 
