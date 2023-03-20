@@ -78,6 +78,8 @@ if (isset($_SESSION['user'])) {
     </html>
 <?php
 
+} else {
+    require_once "Vistas/ErrorPage/404.php";
 }
 
 

@@ -42,6 +42,7 @@ if (isset($_SESSION['user'])) {
                 <div id="TableLoadContacts"></div>
                 <?php require_once "Vistas/Contacts/ModalUpdate.php"; ?>
                 <?php require_once "Vistas/Contacts/ModalAdd.php"; ?>
+               
             </div>
             <?php require_once "Vistas/Layouts/Footer.php"; ?>
 
@@ -52,6 +53,8 @@ if (isset($_SESSION['user'])) {
     </html>
 <?php
 
+} else {
+    require_once "Vistas/ErrorPage/404.php";
 }
 
 

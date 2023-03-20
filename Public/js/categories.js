@@ -23,9 +23,10 @@ function addCategory() {
     success: function (answer) {
       answer = answer.trim();
       if (answer == 1) {
+        
         $("#TableLoadCategories").load("Vistas/Categories/TableCategories.php");
         $("#frmaddcategory")[0].reset();
-        swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Agregada", "success");
+        
       } else {
         swal(":(", "Hubo un problema al agregar" + answer, "error");
       }

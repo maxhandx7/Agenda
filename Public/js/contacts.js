@@ -2,13 +2,7 @@ $(document).ready(function () {
   $("#TableLoadContacts").load("Vistas/Contacts/TableContacts.php");
 
   $("#btnSaveCo").click(function () {
-    if ($("#categoryContact").val() == 0) {
-      swal("No ha seleccionado ninguna categoria");
-      return false;
-    } else if ($("#nombreContact").val() == "") {
-      swal("No ha puesto ningun nombre");
-      return false;
-    }
+   
 
     addContact();
     $("#modaladdcontacts").modal("hide");

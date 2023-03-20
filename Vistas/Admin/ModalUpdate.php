@@ -27,6 +27,11 @@
             <input type="email" class="form-control" id="emailUserU" name="emailUserU" require>
           </div>
 
+          <div class="form-group">
+            <label for="numUserU">Telefono</label>
+            <input type="txt" class="form-control" id="numUserU" name="numUserU" require>
+          </div>
+
         </form>
       </div>
       <div class="modal-footer">

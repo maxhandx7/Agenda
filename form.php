@@ -14,7 +14,6 @@
 <body>
 
   <?php require_once "Vistas/Admin/form_user.php" ?>
-  <?php require_once "Vistas/Admin/Register.php" ?>
 
 </body>
 

@@ -23,12 +23,11 @@
                             $idContact = $r['idContact'];
 
                         ?>
-
-                            <td><?php echo $r['nombre'] ?></td>
-                            <td><?php echo $r['paterno'] ?></td>
-                            <td><?php echo $r['telefono'] ?></td>
-                            <td><?php echo $r['email'] ?></td>
-                            <td><?php echo $r['categoria'] ?></td>
+                            <td><p class="link-dark"><?php echo $r['nombre'] ?></p></td>
+                            <td><p class="link-dark"><?php echo $r['paterno'] ?></p></td>
+                            <td><a href="https://api.whatsapp.com/send?phone=<?php echo $r['telefono'] ?>" class="link-success text-decoration-none" Target="_blank"></i><?php echo $r['telefono'] ?></a></td>
+                            <td><a href="mailto:<?php echo $r['email'] ?>" class="link-info text-decoration-none" Target="_blank"><?php echo $r['email'] ?></i></a></td>
+                            <td><p class="link-dark"><?php echo $r['categoria'] ?></p></td>
 
                             <td><a class="btn btn-outline-info btn-sm" onclick="editContact('<?php echo $idContact ?>')" data-bs-toggle="modal" data-bs-target="#modalupdatecontacts"><i class="fa fa-pen"></i></a></td>
                             <td><a class="btn btn-outline-danger btn-sm" onclick="dropContacts('<?php echo $idContact  ?>')"><i class="fa fa-trash"></i> </a></td>
@@ -47,6 +46,3 @@
         $('#ContactTableDT').DataTable();
     });
 </script>
-
-
-

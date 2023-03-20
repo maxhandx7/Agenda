@@ -4,7 +4,8 @@ require_once "../../Clases/User.php";
             "idUser" => $_POST['id_User'],
             "nombre" => $_POST['nombreUserU'],
             "pass" => $_POST['passUserU'],
-            "email" => $_POST['emailUserU']
+            "email" => $_POST['emailUserU'],
+            "num" => $_POST['numUserU']
                 );  
                
                 

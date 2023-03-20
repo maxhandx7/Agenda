@@ -34,7 +34,7 @@ body{
     border-radius: 50%;
 }
 
-.box input[type= "text" ], .box input[type= "password" ]{
+.box #txtNombre, .box #txtPass{
     border: 0;
     background: none;
     display: block;
@@ -50,7 +50,7 @@ body{
 
 }
 
-.box input[type= "text" ]:focus, .box input[type= "password" ]:focus{
+.box #txtNombre:focus, .box #txtPass:focus{
     width: 280px;
     border-color: white;
 
@@ -80,7 +80,7 @@ body{
 
 
 .Form-register{
-    width: 400px;
+    width: 275px;
     background: rgb(53, 54, 58);
     padding: 10px;
     margin: auto;
@@ -145,7 +145,7 @@ transition: 0.25s;
 }
 
 #modal{
-    background-image:  url("images/fondo.jpg");
+    background-color: rgba(53, 54, 58, 0.1);
 }
 
 
@@ -176,6 +176,11 @@ transition: 0.25s;
 .inputfile-3.has-focus + label,
 .inputfile-3 + label:hover {
     color: #c39f77;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
 }
 
 

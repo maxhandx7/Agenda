@@ -6,6 +6,7 @@ class Login extends DB
     private $ID;
     private $nombre;
     private $username;
+    private $numero;
 
 
     public function userexists($user, $pass)
@@ -35,6 +36,7 @@ class Login extends DB
             $this->ID = $currentUser['id_user'];
             $this->nombre = $currentUser['nombre'];
             $this->username = $currentUser['email'];
+            $this->numero = $currentUser['num'];
         }
     }
     public function getID()
@@ -50,5 +52,9 @@ class Login extends DB
     public function getEmail()
     {
         return $this->username;
+    }
+    public function getNumero()
+    {
+        return $this->numero;
     }
 }

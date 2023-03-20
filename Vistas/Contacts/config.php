@@ -17,7 +17,7 @@ $sql = "SELECT contactos.nombre AS nombre,
         categorias.nombre AS categoria, 
         contactos.id_contactos AS idContact 
         
-        FROM t_contactos AS contactos INNER JOIN t_categorias AS categorias ON contactos.id_categoria = categorias.id_categoria WHERE contactos.users_id = $lol ";
+        FROM t_contactos AS contactos LEFT JOIN t_categorias AS categorias ON contactos.id_categoria = categorias.id_categoria WHERE contactos.users_id = $lol ";
 $result = mysqli_query($conexion, $sql);
 
 
