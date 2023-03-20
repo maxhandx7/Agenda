@@ -39,8 +39,12 @@
           <i class="fa-solid fa-power-off"></i>     
           Salir</a>
         </li>
+      </ul>
         
-      
+      <form class="d-flex" action="busqueda.php" method="get" role="search">
+        <input class="form-control me-2" name="srch" id="srch" type="search" placeholder="buscar" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">buscar</button>
+      </form>
 
       
      
