@@ -15,7 +15,7 @@ if(isset($_SESSION['user'])){
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="Public/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Public/images/System/favicon.png" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>

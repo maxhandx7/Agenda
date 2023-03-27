@@ -1,5 +1,5 @@
 <form class="box" method="post">
-    <img src="Public/images/LOGO.svg" alt="">
+    <img src="Public/images/System/LOGO.svg" alt="">
 
     <?php
 

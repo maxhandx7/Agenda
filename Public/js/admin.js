@@ -159,14 +159,6 @@ function addUser() {
 }
 
 function recogerdatos() {
- /*  let nombre = document.getElementById("cnombre").value;
-  let email = document.getElementById("cemail").value;
-  let tel = document.getElementById("cnum").value; */
-
-
-
-
-
   $.ajax({
     type: "POST",
     data: $("#frmaddContactFast").serialize(),

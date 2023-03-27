@@ -15,9 +15,6 @@ $dates = array(
 
                 );
 
-              
-
-            
                 
 $Contacts = new Contacts();
 echo $Contacts->addContact($dates);
