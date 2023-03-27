@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
     <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <link rel="shortcut icon" href="Public/images/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="Public/images/System/favicon.png" type="image/x-icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Agenda</title>
@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
                             $r['image'];
                         }
                         if (empty($r)) {
-                            echo "<img  src='Public/images/user.png' height='300px' width='300px' style='border-radius: 50%;  display: block;
+                            echo "<img  src='Public/images/System/user.png' height='300px' width='300px' style='border-radius: 50%;  display: block;
                         margin: 0px auto;' alt='profile'>";
                         } else {
                             echo "<img  src='Public/images/" . $r['image'] . "' height='300px' width='300px' style='border-radius: 50%; 
