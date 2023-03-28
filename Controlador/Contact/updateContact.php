@@ -6,7 +6,8 @@ require_once "../../Clases/Contacts.php";
             "nombre" => $_POST['nombreContactU'],
             "paterno" => $_POST['apellidoContactU'],
             "telefono" => $_POST['telContactU'],
-            "email" => $_POST['emailContactU']
+            "email" => $_POST['emailContactU'],
+            "avatar" => $_POST['imgUpdate']
                 );  
                
                 

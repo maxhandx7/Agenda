@@ -5,13 +5,12 @@ class Contacts extends Conexion
 {
     public function addContact($dates)
     {
-
         $conexion = Conexion::Connect();
-        $sql = "INSERT INTO t_contactos (id_categoria, users_id, nombre, paterno, telefono, email) VALUES(?,?,?,?,?,?)";
+        $sql = "INSERT INTO t_contactos (id_categoria, users_id, nombre, paterno, telefono, email, avatar) VALUES(?,?,?,?,?,?,?)";
 
 
         $query = $conexion->prepare($sql);
-        $query->bind_param('iissss', $dates['id_categoria'], $dates['id_user'], $dates['nombre'], $dates['paterno'], $dates['telefono'], $dates['email']);
+        $query->bind_param('iisssss', $dates['id_categoria'], $dates['id_user'], $dates['nombre'], $dates['paterno'], $dates['telefono'], $dates['email'], $dates['avatar']);
         $answer = $query->execute();
 
 
@@ -36,7 +35,7 @@ class Contacts extends Conexion
     {
         $conexion = Conexion::Connect();
 
-        $sql = "SELECT id_contactos, id_categoria, nombre, paterno, telefono, email FROM t_contactos WHERE id_contactos = '$idContact'";
+        $sql = "SELECT id_contactos, id_categoria, nombre, paterno, telefono, email, avatar FROM t_contactos WHERE id_contactos = '$idContact'";
         $result = mysqli_query($conexion, $sql);
         $contact = mysqli_fetch_array($result);
         $dates = array(
@@ -45,18 +44,55 @@ class Contacts extends Conexion
             "nombre" => $contact['nombre'],
             "paterno" => $contact['paterno'],
             "telefono" => $contact['telefono'],
-            "email" => $contact['email']
+            "email" => $contact['email'],
+            "avatar" => $contact['avatar']
+        );
+
+        return $dates;
+    }
+    public function infoContact($idContact)
+    {
+        $conexion = Conexion::Connect();
+        $sql = "SELECT contactos.id_contactos AS idContacts,
+                       contactos.nombre AS nombre, 
+                       contactos.paterno AS paterno, 
+                       contactos.telefono AS telefono, 
+                       contactos.email AS email,
+                       contactos.avatar AS avatar,
+                       categorias.nombre AS categoria, 
+                       contactos.fechaInsert AS fechaInsert 
+                       FROM t_contactos AS contactos 
+                       LEFT JOIN t_categorias AS categorias ON contactos.id_categoria = categorias.id_categoria 
+                       WHERE contactos.id_contactos = $idContact";
+
+        $result = mysqli_query($conexion, $sql);
+        $contact = mysqli_fetch_array($result);
+
+        $dates = array(
+            "nombre" => $contact['nombre'],
+            "paterno" => $contact['paterno'],
+            "telefono" => $contact['telefono'],
+            "email" => $contact['email'],
+            "avatar" => $contact['avatar'],
+            "categoria" => $contact['categoria'],
+            "fechaInsert" => $contact['fechaInsert']
         );
 
         return $dates;
     }
     public function updateContact($dates)
     {
+        $categoriaUpdate = "";
+        if ($dates['id_categoria'] == "0") {
+            $categoriaUpdate = NULL;
+        } else {
+            $categoriaUpdate = $dates['id_categoria'];
+        }
         $conexion = Conexion::Connect();
-        $sql = "UPDATE t_contactos SET id_categoria = ?, nombre= ?,  paterno= ?, telefono= ?, email= ? WHERE id_contactos = ?";
+        $sql = "UPDATE t_contactos SET id_categoria = ?, nombre= ?,  paterno= ?, telefono= ?, email= ?, avatar= ?  WHERE id_contactos = ?";
 
         $query = $conexion->prepare($sql);
-        $query->bind_param('issssi', $dates['id_categoria'], $dates['nombre'], $dates['paterno'], $dates['telefono'], $dates['email'], $dates['idContact']);
+        $query->bind_param('isssssi', $categoriaUpdate, $dates['nombre'], $dates['paterno'], $dates['telefono'], $dates['email'], $dates['avatar'], $dates['idContact']);
         $answer = $query->execute();
 
         return $answer;

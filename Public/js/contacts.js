@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   $("#btnSaveCo").click(function () {
    
-
+    
     addContact();
     $("#modaladdcontacts").modal("hide");
   });
@@ -47,6 +47,7 @@ function addContact() {
     url: "Controlador/Contact/addContact.php",
     success: function (answer) {
       answer = answer.trim();
+      console.log(answer);
       if (answer == 1) {
         $("#TableLoadContacts").load("Vistas/Contacts/TableContacts.php");
         $("#frmaddContact")[0].reset();
@@ -71,11 +72,73 @@ function editContact(idContact) {
       $("#apellidoContactU").val(answer["paterno"]);
       $("#telContactU").val(answer["telefono"]);
       $("#emailContactU").val(answer["email"]);
+      $("#avatarContactU").val(answer["avatar"]);
       $("#categoryContactU").load(
         "Vistas/Contacts/SelectCategoryUpdate.php?idCategory=" + idCategory
       );
+      $('.form-group input[type="radio"]').each(function() {
+        if ($(this).val() === answer["avatar"]) {
+          $(this).prop('checked', true);
+        } 
+    });
     },
   });
+}
+
+function infoContact(idContact) {
+ /*  var imagenes = [
+    '/Public/images/System/1.svg',
+    '/Public/images/System/2.svg',
+    '/Public/images/System/3.svg',
+    '/Public/images/System/4.svg',
+    '/Public/images/System/5.svg',
+    '/Public/images/System/6.svg'
+  ];
+
+  var numeroAleatorio = Math.floor(Math.random() * imagenes.length);
+
+  var imagenSeleccionada = imagenes[numeroAleatorio];
+
+  $('#contenedor-imagen').attr('src', imagenSeleccionada); */
+
+  $.ajax({
+    type: "POST",
+    data: "idContact=" + idContact,
+    url: "Controlador/Contact/infoContact.php",
+    success: function (answer) {
+      answer = jQuery.parseJSON(answer);
+      console.log(answer);
+      $('#contenedor-imagen').attr('src', answer["avatar"]);
+      $("#showNombre").text(answer["nombre"] + " " +( answer["paterno"] ? answer["paterno"] : ""));
+      if (answer["telefono"] != "") {
+        $('#showTel').attr('hidden', false);
+        $("#showTel  p").html("<a href='https://api.whatsapp.com/send?phone=" + answer["telefono"] + "' class='link-success text-decoration-none' Target='_blank'></i>" + answer["telefono"] + "</a>");
+      } else {
+        $('#showTel').attr('hidden', true);
+      }
+      if (answer["email"] != "") {
+        $('#showEmail').attr('hidden', false);
+        $("#showEmail  p").html("<a href='mailto:" + answer["email"] + "' class='link-info text-decoration-none' Target='_blank'>" + answer["email"] + "</i></a>");
+      } else {
+        $('#showEmail').attr('hidden', true);
+      }
+      if (answer["categoria"] != null) {
+        $('#showCategory').attr('hidden', false);
+        $("#showCategory  p").text(answer["categoria"]);
+      } else {
+        $('#showCategory').attr('hidden', true);
+      }
+      if (answer["fechaInsert"] != "") {
+        $('#showFecha').attr('hidden', false);
+        $("#showFecha  p").text(answer["fechaInsert"]);
+      } else {
+        $('#showFecha').attr('hidden', true);
+      }
+    },
+  });
+
+
+
 }
 
 function updateContact() {
@@ -85,12 +148,13 @@ function updateContact() {
     url: "Controlador/Contact/updateContact.php",
     success: function (answer) {
       answer = answer.trim();
+      console.log(answer);
       if (answer == 1) {
         $("#TableLoadContacts").load("Vistas/Contacts/TableContacts.php");
         $("#modalupdatecontacts").modal("toggle");
         swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Actualizado", "success");
       } else {
-        swal(":(", "Hubo un problema al actuaizar", "error");
+        swal(":(", "Hubo un problema al actuaizar"+answer, "error");
       }
     },
   });
