@@ -80,6 +80,34 @@ class Contacts extends Conexion
 
         return $dates;
     }
+    public function infoContact($idContact)
+    {
+        $conexion = Conexion::Connect();
+        $sql = "SELECT contactos.id_contactos AS idContacts,
+                       contactos.nombre AS nombre, 
+                       contactos.paterno AS paterno, 
+                       contactos.telefono AS telefono, 
+                       contactos.email AS email, 
+                       categorias.nombre AS categoria, 
+                       contactos.fechaInsert AS fechaInsert 
+                       FROM t_contactos AS contactos 
+                       LEFT JOIN t_categorias AS categorias ON contactos.id_categoria = categorias.id_categoria 
+                       WHERE contactos.id_contactos = $idContact";
+
+        $result = mysqli_query($conexion, $sql);
+        $contact = mysqli_fetch_array($result);
+        
+        $dates = array(
+            "nombre" => $contact['nombre'],
+            "paterno" => $contact['paterno'],
+            "telefono" => $contact['telefono'],
+            "email" => $contact['email'],
+            "categoria" => $contact['categoria'],
+            "fechaInsert" => $contact['fechaInsert']
+        );
+
+        return $dates;
+    }
     public function updateContact($dates)
     {
         $categoriaUpdate = "";

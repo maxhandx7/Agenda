@@ -1,16 +1,19 @@
-<?php  
+<?php
 require_once "../../Clases/Config.php";
+include_once "../../Controlador/Admin/login.php";
+include_once "../../Clases/Login.php";
 
 $con = new Conexion();
 $conexion = $con->Connect();
+$user = new Login();
+$userSession = new UserSession();
+$user->setUser($userSession->getCurrentUser());
+$lol = $user->getID();
 
 $idCategory = $_GET['idCategory'];
-
- $sql ="SELECT id_categoria, nombre FROM t_categorias  ORDER BY nombre" ;
-
- $result =mysqli_query($conexion,$sql );
+$sql = "SELECT id_categoria, nombre FROM t_categorias WHERE users_id = $lol  ";
+$result = mysqli_query($conexion, $sql);
 ?>
-
 <label for="categoryContact">Categorias</label>
 <select name="categoryContactU" id="categoryContactU" class="form-control">
     <?php

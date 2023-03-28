@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="Public/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="Public/datatable/datatables.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+<link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="Public/fontawesome/css/all.css">
 
 
