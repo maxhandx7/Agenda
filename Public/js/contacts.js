@@ -3,7 +3,7 @@ $(document).ready(function () {
 
   $("#btnSaveCo").click(function () {
    
-
+    
     addContact();
     $("#modaladdcontacts").modal("hide");
   });
@@ -47,6 +47,7 @@ function addContact() {
     url: "Controlador/Contact/addContact.php",
     success: function (answer) {
       answer = answer.trim();
+      console.log(answer);
       if (answer == 1) {
         $("#TableLoadContacts").load("Vistas/Contacts/TableContacts.php");
         $("#frmaddContact")[0].reset();
@@ -71,15 +72,21 @@ function editContact(idContact) {
       $("#apellidoContactU").val(answer["paterno"]);
       $("#telContactU").val(answer["telefono"]);
       $("#emailContactU").val(answer["email"]);
+      $("#avatarContactU").val(answer["avatar"]);
       $("#categoryContactU").load(
         "Vistas/Contacts/SelectCategoryUpdate.php?idCategory=" + idCategory
       );
+      $('.form-group input[type="radio"]').each(function() {
+        if ($(this).val() === answer["avatar"]) {
+          $(this).prop('checked', true);
+        } 
+    });
     },
   });
 }
 
 function infoContact(idContact) {
-  var imagenes = [
+ /*  var imagenes = [
     '/Public/images/System/1.svg',
     '/Public/images/System/2.svg',
     '/Public/images/System/3.svg',
@@ -92,7 +99,7 @@ function infoContact(idContact) {
 
   var imagenSeleccionada = imagenes[numeroAleatorio];
 
-  $('#contenedor-imagen').attr('src', imagenSeleccionada);
+  $('#contenedor-imagen').attr('src', imagenSeleccionada); */
 
   $.ajax({
     type: "POST",
@@ -100,6 +107,8 @@ function infoContact(idContact) {
     url: "Controlador/Contact/infoContact.php",
     success: function (answer) {
       answer = jQuery.parseJSON(answer);
+      console.log(answer);
+      $('#contenedor-imagen').attr('src', answer["avatar"]);
       $("#showNombre").text(answer["nombre"] + " " +( answer["paterno"] ? answer["paterno"] : ""));
       if (answer["telefono"] != "") {
         $('#showTel').attr('hidden', false);
@@ -139,12 +148,13 @@ function updateContact() {
     url: "Controlador/Contact/updateContact.php",
     success: function (answer) {
       answer = answer.trim();
+      console.log(answer);
       if (answer == 1) {
         $("#TableLoadContacts").load("Vistas/Contacts/TableContacts.php");
         $("#modalupdatecontacts").modal("toggle");
         swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Actualizado", "success");
       } else {
-        swal(":(", "Hubo un problema al actuaizar", "error");
+        swal(":(", "Hubo un problema al actuaizar"+answer, "error");
       }
     },
   });

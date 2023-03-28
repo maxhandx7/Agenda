@@ -9,3 +9,4 @@
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="Public/js/sweetalert.min.js"></script>
+<script src="Public/calendar/index.global.js"></script>

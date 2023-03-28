@@ -17,7 +17,7 @@ $result = mysqli_query($conexion, $sql);
 <label for="categoryContact">Categorias</label>
 <select name="categoryContactU" id="categoryContactU" class="form-control">
     <?php
-    echo '<option value="0" selected="true" disabled="disabled">No tiene categoría asignada</option>';
+    echo '<option value="0" selected="true" >Sin categoría  </option>';
     while ($r = mysqli_fetch_row($result)) {
         if ($r[0] == $idCategory) {
             echo '<option selected value="' . $r['0'] . '">' . $r['1'] . '</option>';
