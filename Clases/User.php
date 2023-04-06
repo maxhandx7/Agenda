@@ -8,11 +8,13 @@ class User extends Conexion
         if ($dates['nombre'] == "" && $dates['pass'] == "") {
             return false;
         }
-
-        if(strlen($dates['pass']) < 6){
-            $error_clave = "La clave debe tener al menos 6 caracteres";
+        if ($dates['email'] == "") {
             return false;
-         }
+        }
+
+        if (strlen($dates['pass']) < 6) {
+            return false;
+        }
 
         $conexion = Conexion::Connect();
         $sql = "INSERT INTO user (nombre, pass, email, num) VALUES(?,?,?,?)";
@@ -76,6 +78,53 @@ class User extends Conexion
 
         $query = $conexion->prepare($sql);
         $query->bind_param('is', $dates['id_userS'], $dates['est']);
+        $answer = $query->execute();
+
+        return $answer;
+    }
+
+    public function addCommitment($dates)
+    {
+        $conexion = Conexion::Connect();
+        $sql = 'INSERT INTO eventos (id_user, titulo, descripcion, inicio, fin) VALUES (?, ?, ?, ?, ?)';
+        $query = $conexion->prepare($sql);
+        $query->bind_param('issss', $dates['id_user'], $dates['titulo'], $dates['descripcion'], $dates['inicio'], $dates['fin']);
+        $answer = $query->execute();
+        return $answer;
+    }
+
+    public function infoAgenda($idAgenda)
+    {
+        $conexion = Conexion::Connect();
+        $sql = "SELECT  evento.id,
+                        evento.titulo,
+                        evento.descripcion,
+                        evento.inicio,
+                        evento.fin
+                        FROM eventos AS evento 
+                        WHERE evento.id = $idAgenda";
+
+        $result = mysqli_query($conexion, $sql);
+        $evento = mysqli_fetch_array($result);
+
+        $dates = array(
+            "titulo" => $evento['titulo'],
+            "descripcion" => $evento['descripcion'],
+            "inicio" => $evento['inicio'],
+            "fin" => $evento['fin']
+        );
+
+        return $dates;
+    }
+
+    public function dropEvent($idEvent)
+    {
+        $conexion = Conexion::Connect();
+
+        $sql = "DELETE FROM eventos WHERE id = ?";
+        $query = $conexion->prepare($sql);
+
+        $query->bind_param('i', $idEvent);
         $answer = $query->execute();
 
         return $answer;

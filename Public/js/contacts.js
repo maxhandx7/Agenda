@@ -86,21 +86,6 @@ function editContact(idContact) {
 }
 
 function infoContact(idContact) {
- /*  var imagenes = [
-    '/Public/images/System/1.svg',
-    '/Public/images/System/2.svg',
-    '/Public/images/System/3.svg',
-    '/Public/images/System/4.svg',
-    '/Public/images/System/5.svg',
-    '/Public/images/System/6.svg'
-  ];
-
-  var numeroAleatorio = Math.floor(Math.random() * imagenes.length);
-
-  var imagenSeleccionada = imagenes[numeroAleatorio];
-
-  $('#contenedor-imagen').attr('src', imagenSeleccionada); */
-
   $.ajax({
     type: "POST",
     data: "idContact=" + idContact,
