@@ -8,6 +8,7 @@ $user = new Login();
 
 if (isset($_SESSION['user'])) {
     $user->setUser($userSession->getCurrentUser());
+    $Users = $user->getID();
 
 ?>
 
@@ -33,6 +34,7 @@ if (isset($_SESSION['user'])) {
                 <p class="lead"></p>
                 <hr class="my-4">
                 <?php require_once "Vistas/Agenda/TableAgenda.php"; ?>
+                <?php require_once "Vistas/Agenda/ModalInfo.php"; ?>
             </div>
             <?php require_once "Vistas/Layouts/Footer.php"; ?>
 

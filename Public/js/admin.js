@@ -35,6 +35,13 @@ $("#btnuser").click(function () {
       text: "Contraseña no coinciden",
     });
     return false;
+  }
+  else if ($("#txtEmail").val() == 0) {
+    Swal.fire({
+      icon: "info",
+      text: "Se requiere de un correo electronico para registrarse",
+    });
+    return false;
   } else {
     addUser();
   }
@@ -47,7 +54,7 @@ function editUser(idUser) {
     url: "Controlador/Admin/editUser.php",
     success: function (answer) {
       answer = jQuery.parseJSON(answer);
-      
+
       $("#id_User").val(answer["idUser"]);
       $("#nombreUserU").val(answer["nombre"]);
       $("#passUserU").val(answer["pass"]);
@@ -140,13 +147,13 @@ function addUser() {
           text: "Usuario creado",
         });
         $("#frmadduser")[0].reset();
-      }else if (answer == 0){
+      } else if (answer == 0) {
         Swal.fire({
           icon: "error",
           title: "Ups...",
           text: "Los campos con * son obligatorios y la contraseña debe ser mayor a 6 caracteres",
         });
-      } 
+      }
       else {
         Swal.fire({
           icon: "error",
@@ -170,12 +177,12 @@ function recogerdatos() {
           title: "( ͡ᵔ ͜ʖ ͡ᵔ)",
           text: "Agregado",
           icon: "success",
-          
+
         });
-        
+
       } else {
         swal(":(", "Hubo un problema al agregar contacto" + answer, "error");
-        
+
       }
     },
   });
