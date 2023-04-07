@@ -66,6 +66,7 @@ if (isset($_SESSION['user'])) {
                     <input type="text" id="nombreContact" name="nombreContact" value="<?php echo $bsqda['nombre']; ?>" hidden>
                     <input type="text" id="telContact" name="telContact" value="<?php echo $bsqda['num']; ?>" hidden>
                     <input type="text" id="emailContact" name="emailContact" value="<?php echo $bsqda['email']; } ?>" hidden>
+                    <input type="radio" id="img" name="img" value="../../Public/images/System/1.svg">
                     </form>
                    
                     <h3 class="display-5 text-center"><b><span><?php echo $bsqda['nombre']; ?></span></b></h3>

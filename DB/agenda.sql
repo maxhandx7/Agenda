@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-04-2023 a las 22:51:00
+-- Tiempo de generación: 07-04-2023 a las 05:15:23
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -44,7 +44,11 @@ INSERT INTO `esatdo` (`id`, `users_id`, `estado`) VALUES
 (4, 77, 'Alan'),
 (5, 78, 'Hola'),
 (6, 79, 'HOLA SOY ISMAEL'),
-(7, 78, 'Mi gente\r\n');
+(7, 78, 'Mi gente\r\n'),
+(8, 78, 'Hola'),
+(9, 78, 'Hola'),
+(10, 78, 'Lol'),
+(11, 78, 'Lol');
 
 -- --------------------------------------------------------
 
@@ -66,7 +70,12 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `id_user`, `titulo`, `descripcion`, `inicio`, `fin`) VALUES
-(23, 76, 'dfsdf', 'sdfdsf', '2023-03-28', '2023-03-29');
+(23, 76, 'dfsdf', 'sdfdsf', '2023-03-28', '2023-03-29'),
+(26, 77, 'Hola', 'asjhdkasjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', '2023-03-29', '2023-03-30'),
+(27, 77, 'Hola', '45454545', '2023-03-30', '2023-03-31'),
+(28, 77, 'Hola', 'adasd', '2023-04-04T07:30:00-05:00', '2023-04-04T08:00:00-05:00'),
+(29, 77, 'hOLA', 'ASDASDA', '2023-04-04T08:00:00-05:00', '2023-04-04T08:30:00-05:00'),
+(30, 78, 'Hola', 'Nueva\n', '2023-04-05', '2023-04-06');
 
 -- --------------------------------------------------------
 
@@ -93,7 +102,11 @@ INSERT INTO `imagen` (`id`, `users_id`, `image`) VALUES
 (6, 77, 'imagen_27044521.jpg'),
 (7, 78, 'imagen_20202029.jfif'),
 (8, 79, 'imagen_20224907.jpeg'),
-(9, 78, 'imagen_25051700.jpg');
+(9, 78, 'imagen_25051700.jpg'),
+(10, 78, 'imagen_07043401.jfif'),
+(11, 78, 'imagen_07043439.jfif'),
+(12, 78, 'imagen_07043529.jfif'),
+(13, 78, 'imagen_07043648.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,9 +128,8 @@ CREATE TABLE `t_categorias` (
 
 INSERT INTO `t_categorias` (`id_categoria`, `users_id`, `nombre`, `descripcion`, `fechaInsert`) VALUES
 (32, 76, 'Love', '', '2022-04-26 20:39:19'),
-(33, 77, 'Lol', '', '2022-04-26 20:55:15'),
-(35, 78, 'Hola', 'Nueva categoria', '2023-03-20 14:21:42'),
-(36, 77, 'Rubens', '', '2023-03-25 13:00:29');
+(36, 77, 'Rubens', 'asdsadas', '2023-03-25 13:00:29'),
+(38, 77, 'sadasd', 'asdsa', '2023-04-06 19:53:13');
 
 -- --------------------------------------------------------
 
@@ -142,13 +154,8 @@ CREATE TABLE `t_contactos` (
 --
 
 INSERT INTO `t_contactos` (`id_contactos`, `id_categoria`, `users_id`, `nombre`, `paterno`, `telefono`, `email`, `avatar`, `fechaInsert`) VALUES
-(54, 33, 77, 'Primer contactos ', '', '3155661242', '', '../../Public/images/System/0.svg', '2022-04-26 20:55:38'),
-(56, NULL, 78, 'Raul', 'Gonzales', '', '', NULL, '2023-03-20 14:27:01'),
-(57, NULL, 78, 'Alan', NULL, '', 'Alancarabali@gmail.com', NULL, '2023-03-20 14:29:39'),
 (61, NULL, 79, 'JUAN', 'Gonzales', '3108327515', 'JUAN@gmail.com', NULL, '2023-03-20 16:50:45'),
 (62, NULL, 79, 'Alan', NULL, '3145561727', 'Alancarabali@gmail.com', '../../Public/images/System/0.svg', '2023-03-20 16:51:37'),
-(64, NULL, 77, 'Manolo', 'Gonzales', '', 'AlanCarabali@gmail.com', '../../Public/images/System/0.svg', '2023-03-25 12:56:54'),
-(69, NULL, 77, 'bill', 'Gonzales', '', '', '../../Public/images/System/1.svg', '2023-03-27 17:57:03'),
 (79, NULL, 76, 'Amor', '', '3145561727', 'AlanCarabali@gmail.com', '../../Public/images/System/1.svg', '2023-03-27 19:23:30'),
 (80, NULL, 76, 'Juan', 'Zapata', '5454545454', 'AlanCarabali@gmail.com', '../../Public/images/System/0.svg', '2023-03-27 21:11:08'),
 (81, 32, 76, 'bill', 'botas', '96565656', 'AlanCarabali@gmail.com', '../../Public/images/System/0.svg', '2023-03-27 21:41:01');
@@ -174,7 +181,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nombre`, `pass`, `email`, `num`) VALUES
 (76, 'Diana', 'salma12.', 'Dianaamaamiranda@gmail.com', NULL),
 (77, 'Alan', '1796', 'Alancarabali@gmail.com', '3145561727'),
-(78, 'Prueba', '123', 'lol@lol.co', '3454545'),
+(78, 'Prueba', '123', 'lol@lol.com', '3454545'),
 (79, 'Ismael', 'ismaelyate', 'ismaelyate@gmail.com', '3108129260'),
 (80, 'Juan', '$2y$10$Z7Uwj.QP80RCR6Tt2Y', 'AlanCarabali@gmail.com', '21561545'),
 (81, 'Rosa', '$2a$10$ce6d30d8927a8ca7b1', 'AlanCarabali@gmail.com', '0'),
@@ -234,31 +241,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `esatdo`
 --
 ALTER TABLE `esatdo`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `t_categorias`
 --
 ALTER TABLE `t_categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `t_contactos`
 --
 ALTER TABLE `t_contactos`
-  MODIFY `id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

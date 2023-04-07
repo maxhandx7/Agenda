@@ -1,4 +1,8 @@
 <?php
+require_once "../phpMailer/PHPMailer.php";
+require_once "../phpMailer/";
+require_once "../phpMailer/Exception.php";
+
 require_once "../Clases/Config.php";
 include_once "../Controlador/Admin/login.php";
 include_once "../Clases/Login.php";
@@ -46,12 +50,32 @@ if (date('Y-m-d') == $fecha_envio) {
 
 function enviar_correo($titulo, $descripcion, $email)
 {
-    $para = $email;
-    $titulo = $titulo;
-    $mensaje = $descripcion;
-    $cabeceras = 'De: maxhand171996@gmail.com' . "\r\n" .
-        'Responder a: maxhand171996@gmail.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
+    $mail = new PHPMailer(true);
 
-    mail($para, $titulo, $mensaje, $cabeceras);
+    try {
+        //Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'user@example.com';                     //SMTP username
+        $mail->Password   = 'secret';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('from@example.com', 'Mailer');
+        $mail->addAddress($email, $email);     //Add a recipient
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $titulo;
+        $mail->Body    = $descripcion;
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 }

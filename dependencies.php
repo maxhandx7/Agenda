@@ -1,7 +1,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="Public/fontawesome/css/all.css">
-  <link rel="stylesheet" href="Public/alset/sweetalert2.min.css">
+<link rel="stylesheet" href="Public/alset/sweetalert2.min.css">
+<link rel="stylesheet" href="Public/imgUploaded/imageuploadify.min.css">
 
 
 <script src="Public/js/jquery-3.6.0.min.js"></script>
@@ -11,4 +12,3 @@
 <script src="Public/js/sweetalert.min.js"></script>
 <script src="Public/alset/sweetalert2.min.js"></script>
 <script src="node_modules/fullcalendar/index.global.js"></script>
-
