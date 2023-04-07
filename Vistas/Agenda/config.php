@@ -1,14 +1,7 @@
 <?php 
-
-/* $ObjectC = new Conexion();
-$conexion = $ObjectC->Connect();
-$lol = $user->getID();
-$sql = "SELECT id, id_user, titulo, inicio, fin FROM eventos WHERE id_user = $lol  ORDER BY eventos.id ASC";
-
-
-$result = mysqli_query($conexion, $sql);
- */
-
+/* $dsn = 'mysql:host=sql109.epizy.com;dbname=epiz_33215471_agenda';
+$usuario = 'epiz_33215471';
+$contraseña = 'ePF4i0ySluq5b9z'; */
  $dsn = 'mysql:host=localhost;dbname=agenda';
 $usuario = 'root';
 $contraseña = '';

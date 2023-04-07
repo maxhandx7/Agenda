@@ -95,10 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
           const fechafin = new Date(answer["fin"]);
           const horainicio = fechainicio.getHours();
           const minutosinicio = fechainicio.getMinutes();
-          const segundosinicio = fechainicio.getSeconds();
           const horafin = fechafin.getHours();
           const minutosfin = fechafin.getMinutes();
-          const segundosfin = fechafin.getSeconds();
 
           $("#titulo").text(answer["titulo"]);
           if (answer["descripcion"] != "") {
@@ -141,13 +139,17 @@ document.addEventListener('DOMContentLoaded', function () {
         dropEvents(info.event.id);
       });
     },
+    longPressDelay: function(info) {
+
+      alert(info);
+      
+      },
 
 
   });
 
   calendar.render();
 });
-
 
 function dropEvents(idEvent) {
   Swal.fire({
