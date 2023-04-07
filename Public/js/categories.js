@@ -23,23 +23,30 @@ function addCategory() {
     success: function (answer) {
       answer = answer.trim();
       if (answer == 1) {
-        
+
         $("#TableLoadCategories").load("Vistas/Categories/TableCategories.php");
         $("#frmaddcategory")[0].reset();
-        
+        Swal.fire({
+          icon: 'success',
+          title: 'Categoria guardada exitosamente',
+        })
       } else {
-        swal(":(", "Hubo un problema al agregar" + answer, "error");
+        Swal.fire({
+          icon: 'error',
+          title: 'ha ocurrido un error al guardar la Categoria'
+        })
       }
     },
   });
 }
 
 function dropCategory(Category_id) {
-  swal({
+  Swal.fire({
     title: "Esta seguro?",
     text: "Una vez eliminado, ¡no podrá recuperar esta categoria!",
     icon: "warning",
     buttons: true,
+    showCancelButton: true,
     dangerMode: true,
   }).then((willDelete) => {
     if (willDelete) {
@@ -53,9 +60,15 @@ function dropCategory(Category_id) {
             $("#TableLoadCategories").load(
               "Vistas/Categories/TableCategories.php"
             );
-            swal("¡Ok! ¡Tu categoria ha sido eliminado!", "");
+            Swal.fire({
+              icon: 'success',
+              title: 'Categoria eliminada',
+            })
           } else {
-            swal(":(", "Hubo un problema al eliminar", "error");
+            Swal.fire({
+              icon: 'error',
+              title: 'ha ocurrido un error al eliminar la categoria'
+            })
           }
         },
       });
@@ -87,9 +100,15 @@ function updateCategory() {
       if (answer == 1) {
         $("#TableLoadCategories").load("Vistas/Categories/TableCategories.php");
         $("#modalupdatecategory").modal("toggle");
-        swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Actualizado", "success");
+        Swal.fire({
+          icon: 'success',
+          title: 'Categoria actualizada',
+        })
       } else {
-        swal(":(", "Hubo un problema al actuaizar", "error");
+        Swal.fire({
+          icon: 'error',
+          title: 'ha ocurrido un error al actualizar la categoria'
+        })
       }
     },
   });

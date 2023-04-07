@@ -1,14 +1,22 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-  let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    locale: "es",
+    locale: 'es',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
-    timeZone: 'local',  
+    allDayText: 'Hora',
+    buttonText: {
+      today: 'Hoy',
+      month: 'Mes',
+      week: 'Semana',
+      day: 'Día',
+      list: 'Lista'
+    },
+    timeZone: 'local',
     navLinks: true,
     selectable: true,
     editable: true,
@@ -53,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 Swal.fire({
                   icon: 'success',
                   title: 'Evento guardado exitosamente',
-                }).then(function(){ 
+                }).then(function () {
                   location.reload();
-                  })
+                })
               }
             })
         }
@@ -82,7 +90,16 @@ document.addEventListener('DOMContentLoaded', function () {
         url: "Controlador/Agenda/infoAgenda.php",
         success: function (answer) {
           answer = jQuery.parseJSON(answer);
-          console.log(answer);
+
+          const fechainicio = new Date(answer["inicio"]);
+          const fechafin = new Date(answer["fin"]);
+          const horainicio = fechainicio.getHours();
+          const minutosinicio = fechainicio.getMinutes();
+          const segundosinicio = fechainicio.getSeconds();
+          const horafin = fechafin.getHours();
+          const minutosfin = fechafin.getMinutes();
+          const segundosfin = fechafin.getSeconds();
+
           $("#titulo").text(answer["titulo"]);
           if (answer["descripcion"] != "") {
             $('#descripcion').attr('hidden', false);
@@ -90,19 +107,33 @@ document.addEventListener('DOMContentLoaded', function () {
           } else {
             $('#descripcion').attr('hidden', true);
           }
-          if (answer["inicio"] != "") {
-            $('#start').attr('hidden', false);
-            $("#start  p").html("<b>Inicio: </b>"+answer["inicio"]);
+          if (horainicio != 19) {
+            if (answer["inicio"] != "") {
+              $('#start').attr('hidden', false);
+              $("#start  p").html(horainicio + " : " + minutosinicio);
+            } else {
+              $('#start').attr('hidden', true);
+            }
+            if (answer["fin"] != "") {
+              $('#end').attr('hidden', false);
+              $("#end  p").html(horafin + " : " + minutosfin);
+            } else {
+              $('#end').attr('hidden', true);
+            }
           } else {
-            $('#start').attr('hidden', true);
+            if (answer["inicio"] != "") {
+              $('#start').attr('hidden', false);
+              $("#start  p").html(answer["inicio"]);
+            } else {
+              $('#start').attr('hidden', true);
+            }
+            if (answer["fin"] != "") {
+              $('#end').attr('hidden', false);
+              $("#end  p").html(answer["fin"]);
+            } else {
+              $('#end').attr('hidden', true);
+            }
           }
-          if (answer["fin"] != "") {
-            $('#end').attr('hidden', false);
-            $("#end  p").html("<b>fin: </b>"+answer["fin"]);
-          } else {
-            $('#end').attr('hidden', true);
-          }
-
         }
       });
       $('#modalInfoAgenda').modal('show');
@@ -143,8 +174,8 @@ function dropEvents(idEvent) {
       });
     }
   })
-   
-   
+
+
 }
 
 

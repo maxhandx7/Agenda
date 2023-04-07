@@ -15,11 +15,11 @@ require_once "config.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         <?php
                         foreach ($result as $r) {
                             $Category_id = $r['id_categoria'];
                         ?>
+                        <tr>
                             <td> <?php echo $r['nombre'] ?></td>
                             <td><?php echo $r['descripcion'] ?></td>
                             <td><a onclick="editCategory('<?php echo $Category_id ?>')" data-bs-toggle="modal" data-bs-target="#modalupdatecategory" class="btn btn-outline-info btn-sm"><i class="fa fa-pen"></i> </a></td>

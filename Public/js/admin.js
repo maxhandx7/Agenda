@@ -73,9 +73,17 @@ function updateUser() {
       answer = answer.trim();
       if (answer == 1) {
         $("#modalupdateuser").modal("toggle");
-        swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Actualizado", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Usuario Actualizado",
+          footer: '<a class="btn btn-outline-info" href="/">ver perfil</a>',
+        });
       } else {
-        swal(":(", "Hubo un problema al actuaizar" + answer, "error");
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Hubo un problema al actualizar usuario",
+        });
       }
     },
   });
@@ -90,10 +98,18 @@ function actestado() {
     success: function (answer) {
       answer = answer.trim();
       if (answer == 1) {
-        swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Actualizado", "success");
-        $("#modalupdatestate").modal("hiden");
+        Swal.fire({
+          icon: "success",
+          title: "Estado Actualizado",
+          footer: '<a class="btn btn-outline-info" href="/">ver perfil</a>',
+        });
+        $("#modalupdatestate").modal("hide");
       } else {
-        swal(":(", "Hubo un problema al actuaizar" + answer, "error");
+        Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Hubo un problema al actualizar el estado",
+        });
       }
     },
   });
@@ -120,10 +136,18 @@ function actualizarimg() {
         answer = answer.trim();
 
         if (answer == 1) {
-          swal("( ͡ᵔ ͜ʖ ͡ᵔ)", "Hecho", "success");
+          Swal.fire({
+          icon: "success",
+          title: "Imagen Actualizada",
+          footer: '<a class="btn btn-outline-info" href="/">ver perfil</a>',
+        });
           $("#modalupdatepic").modal("hide");
         } else {
-          swal(":(", "Hubo un problema " + answer, "error");
+          Swal.fire({
+          icon: "error",
+          title: "Ups...",
+          text: "Hubo un problema al actualizar la imagen",
+        });
         }
       },
     });
@@ -173,7 +197,7 @@ function recogerdatos() {
     success: function (answer) {
       answer = answer.trim();
       if (answer == 1) {
-        swal({
+        Swal.fire({
           title: "( ͡ᵔ ͜ʖ ͡ᵔ)",
           text: "Agregado",
           icon: "success",
@@ -181,7 +205,7 @@ function recogerdatos() {
         });
 
       } else {
-        swal(":(", "Hubo un problema al agregar contacto" + answer, "error");
+        Swal.fire(":(", "Hubo un problema al agregar contacto" + answer, "error");
 
       }
     },

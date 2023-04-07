@@ -10,7 +10,7 @@ $dates = array(
    "paterno" => isset($_POST["apellidoContact"]) ? $_POST["apellidoContact"] : NULL,
    "telefono" => $_POST['telContact'],
    "email" => $_POST['emailContact'],
-   "avatar" => $_POST['img']
+   "avatar" => isset($_POST["img"]) ? $_POST["img"] : "../../Public/images/System/0.svg",
 );
 
 

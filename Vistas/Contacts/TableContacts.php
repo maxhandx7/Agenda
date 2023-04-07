@@ -11,18 +11,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?php
-                        foreach ($result as $r) {
-                            $idContact = $r['idContact'];
-                        ?>
+
+                    <?php
+                    foreach ($result as $r) {
+                        $idContact = $r['idContact'];
+                    ?><tr>
                             <td><a href="" class="link-primary pe-auto text-decoration-none" onclick="infoContact('<?php echo $idContact ?>')" data-bs-toggle="modal" data-bs-target="#modalinfocontacts"><i class="fa-solid fa-user fa-beat-fade"></i> &nbsp;<?php echo $r['nombre'] ?></a></td>
                             <td><a class="btn btn-outline-info btn-sm" onclick="editContact('<?php echo $idContact ?>')" data-bs-toggle="modal" data-bs-target="#modalupdatecontacts"><i class="fa fa-pen"></i></a></td>
                             <td><a class="btn btn-outline-danger btn-sm" onclick="dropContacts('<?php echo $idContact  ?>')"><i class="fa fa-trash"></i> </a></td>
-                    </tr>
-                <?php
-                        }
-                ?>
+                        </tr>
+                    <?php
+
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
